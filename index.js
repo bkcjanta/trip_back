@@ -18,21 +18,8 @@ app.use(cors({
 }));
 
 app.get("/", (req, res) => {
-
-    // five days from now
-    // const now = new Date("2021-05-01");
-    // const pattern = date.compile('ddd,MM DD YYYY');
-    // const today = date.format(now, pattern);
-    // console.log(today);
-
-    const date1 = new Date(`2021-05-03 10:15`);
-    const date2 = new Date(`2021-05-04 5:45`);
-    const diff = date.subtract(date2, date1).toHours();
-    console.log(diff);
-    res.send({ message: "Welcome to Flight Booking App", data: { date1, date2, diff } });
+    res.send({ message: "Welcome to Flight Booking App" });
 })
-
-//importing routes
 
 app.use("/user", userRoute);
 app.use("/flight", flightRoute);
