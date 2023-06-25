@@ -4,6 +4,7 @@ const usersSchema = mongoose.Schema({
     email: { type: String, required: true, unique: true },
     mobile: { type: String, required: true },
     password: { type: String, required: true },
+    type: { type: String, default: "user" },
 }, { timestamps: true });
 
 const usersModel = mongoose.model("user", usersSchema);

@@ -37,7 +37,7 @@ userRoute.post("/login", async (req, res) => {
         if (user) {
             const isPasswordMatch = await bcrypt.compare(password, user.password);
             if (isPasswordMatch) {
-                const token = jwt.sign({ userID: user._id }, process.env.ACCESS_TOKEN_PRIVATE_KEY)
+                const token = jwt.sign({ userId: user._id, usertype: user.type }, process.env.ACCESS_TOKEN_PRIVATE_KEY);
 
                 let userObj = {
                     name: user.name,
