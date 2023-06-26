@@ -5,7 +5,7 @@ const date = require('date-and-time');
 
 // search flights basing on from and to, departure date and return date,
 flightRoute.post("/search", async (req, res) => {
-    const { from, to, departureDate, returnDate } = req.body;
+    const { from, to, departureDate, } = req.body;
     console.log("req.body", req.body);
     console.log("departureDate", departureDate);
     const day = date.format(new Date(departureDate), 'dddd');
@@ -50,6 +50,21 @@ flightRoute.get("/details/:id", async (req, res) => {
     }
 }
 );
+
+
+// get all flights
+
+flightRoute.get("/all", async (req, res) => {
+    try {
+        const trips = await flightModel.find();
+        res.status(200).send({ data: trips });
+    } catch (err) {
+        console.log(err);
+        res.status(400).send({ msg: err.message });
+    }
+}
+);
+
 
 
 
