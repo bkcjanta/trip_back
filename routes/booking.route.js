@@ -8,10 +8,10 @@ const { flightModel } = require("../models/flight.model");
 
 // post a booking
 bookingRoute.post("/add", async (req, res) => {
-    const { flightId, userId, passengers, totalPrice } = req.body;
+    const { flightId, userId, passengers, totalPrice, departureDate } = req.body;
     const seats = passengers.length;
     try {
-        const newBooking = new bookingModel({ flightId, seats, userId, passengers, totalPrice });
+        const newBooking = new bookingModel({ flightId, seats, userId, passengers, totalPrice, departureDate });
         const booking = await newBooking.save();
         res.status(200).send({ msg: "New Booking Created Successfully!", data: booking });
     } catch (err) {

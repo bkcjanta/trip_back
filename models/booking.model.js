@@ -7,6 +7,7 @@ const bookingSchema = mongoose.Schema({
     seats: { type: Number, required: true },
     totalPrice: { type: Number, required: true },
     bookingDate: { type: Date, default: Date.now() },
+    departureDate: { type: Date, required: true },
     bookingStatus: { type: String, default: "active" },
     passengers: { type: Array, required: true },
 }, { timestamps: true });
