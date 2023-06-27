@@ -7,7 +7,7 @@ const { flightModel } = require("../models/flight.model");
 
 // get all flights
 
-protectedRoute.post("/flight/search", async (req, res) => {
+protectedRoute.post("/flight/all", async (req, res) => {
     try {
         const trips = await flightModel.find();
         res.status(200).send({ data: trips });
