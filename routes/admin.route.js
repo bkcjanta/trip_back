@@ -1,6 +1,6 @@
 const express = require("express");
 const adminRoute = express.Router();
-const { userModel } = require("../models/user.model");
+const { usersModel } = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -10,14 +10,14 @@ const jwt = require("jsonwebtoken");
 adminRoute.post("/signup", async (req, res) => {
     const { name, email, mobile, password } = req.body;
     console.log(req.body);
-    const isUser = await userModel.findOne({ "email": email });
+    const isUser = await usersModel.findOne({ "email": email });
     if (isUser) {
         res.status(400).send({ msg: "Email already exists!" });
     } else {
         try {
             hash = await bcrypt.hash(password, 10);
             if (hash) {
-                const newUser = new userModel({ name, email, password: hash, mobile, type: "admin" });
+                const newUser = new usersModel({ name, email, password: hash, mobile, type: "admin" });
                 const user = await newUser.save();
                 user.password = undefined;
                 res.status(200).send({ msg: "User Created Successfully!", data: user });
@@ -37,7 +37,7 @@ adminRoute.post("/signup", async (req, res) => {
 adminRoute.post("/login", async (req, res) => {
     try {
         const { email, password } = req.body;
-        const admin = await userModel.findOne({ email: email });
+        const admin = await usersModel.findOne({ email: email });
         if (admin) {
             if (admin.type === "admin") {
                 const isPasswordMatch = await bcrypt.compare(password, admin.password);
