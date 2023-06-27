@@ -9,6 +9,7 @@ const { userRoute } = require("./routes/user.route");
 const { bookingRoute } = require("./routes/booking.route");
 const { protectedRoute } = require("./routes/protected.route");
 const { adminRoute } = require("./routes/admin.route");
+const { userAuth } = require("./middleware/userAuth");
 const app = express()
 app.use(express.json())
 app.use(cookieParser());
@@ -24,7 +25,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRoute);
 app.use("/flight", flightRoute);
 app.use("/admin", adminRoute);
-app.use("/booking", bookingRoute);
+app.use("/booking", userAuth, bookingRoute);
 app.use("/admin/protected", protectedRoute);
 
 

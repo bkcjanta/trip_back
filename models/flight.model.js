@@ -15,6 +15,7 @@ const flightSchema = mongoose.Schema({
     description: { type: String, required: true },
     flightDays: { type: Array, required: true },
     flightStatus: { type: String, default: "active" },
+
 }, { timestamps: true });
 
 // create a model for flights collection
