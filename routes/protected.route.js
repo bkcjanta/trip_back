@@ -2,6 +2,7 @@ const express = require("express");
 const protectedRoute = express.Router();
 const { bookingModel } = require("../models/booking.model");
 const { flightModel } = require("../models/flight.model");
+const { usersModel } = require("../models/user.model");
 
 // flight section ------------------------------------------- flight section ------------------------------------------------- flight section
 
