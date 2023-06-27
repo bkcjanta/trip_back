@@ -9,7 +9,7 @@ const { flightModel } = require("../models/flight.model");
 
 protectedRoute.get("/flight/all", async (req, res) => {
     try {
-        const trips = await flightModel.find();
+        const trips = await flightModel.find().sort({ createdAt: -1 });
         res.status(200).send({ data: trips });
     } catch (err) {
         console.log(err);
