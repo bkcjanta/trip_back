@@ -82,7 +82,7 @@ protectedRoute.delete("/flight/delete/:id", async (req, res) => {
 // get all bookings
 protectedRoute.get("/bookings/all", async (req, res) => {
     try {
-        const bookings = await bookingModel.find();
+        const bookings = await bookingModel.find().populate("flightId").populate("userId");
         res.status(200).send({ data: bookings });
     } catch (err) {
         console.log(err);
