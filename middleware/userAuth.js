@@ -1,8 +1,10 @@
 require('dotenv').config()
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const userAuth = async (req, res, next) => {
-    var token = req.body.token
+    var { token } = req.body;
+    console.log(req.body)
     if (token) {
         try {
             const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_PRIVATE_KEY);
@@ -10,10 +12,10 @@ const userAuth = async (req, res, next) => {
             next();
         } catch (error) {
             console.log(error)
-            res.status(401).send({ Failed: "Please login again !" })
+            res.status(401).send({ Failed: "Please login again_A !" })
         }
     } else {
-        res.status(401).send({ Failed: "Please login again !" })
+        res.status(401).send({ Failed: "Please login again_B !" })
     }
 }
 
