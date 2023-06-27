@@ -4,6 +4,8 @@ require("dotenv").config();
 
 const userAuth = async (req, res, next) => {
     var { token } = req.body;
+    console.log("token", token)
+    console.log("req.body", req.body)
     console.log(req.body)
     if (token) {
         try {
