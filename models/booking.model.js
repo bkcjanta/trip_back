@@ -8,7 +8,7 @@ const bookingSchema = mongoose.Schema({
     totalPrice: { type: Number, required: true },
     bookingDate: { type: Date, default: Date.now },
     bookingStatus: { type: String, default: "active" },
-    pasengers: { type: Array, required: true },
+    passengers: { type: Array, required: true },
 }, { timestamps: true });
 
 // create a model for flights bookings by users
