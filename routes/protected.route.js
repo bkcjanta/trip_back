@@ -51,9 +51,9 @@ protectedRoute.post("/flight/add", async (req, res) => {
 // update a flight
 protectedRoute.put("/flight/update/:id", async (req, res) => {
     const { id } = req.params;
-    const { from, to, departureTime, arrivalTime, duration, seats, price, stops, airline, image, description, flightDays } = req.body;
+    const { from, to, departureTime, arrivalTime, duration, seats, price, stops, airline, image, description, flightDays, flightStatus } = req.body;
     try {
-        const trip = await flightModel.findByIdAndUpdate(id, { from, to, departureTime, arrivalTime, duration, seats, price, stops, airline, image, description, flightDays });
+        const trip = await flightModel.findByIdAndUpdate(id, { from, to, departureTime, arrivalTime, duration, seats, price, stops, airline, image, description, flightDays, flightStatus });
         const updatedTrip = await flightModel.findById(id);
         res.status(200).send({ msg: "Flight Updated Successfully!", data: updatedTrip });
     } catch (err) {
