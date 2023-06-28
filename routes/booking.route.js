@@ -59,7 +59,7 @@ bookingRoute.put("/update/:id", async (req, res) => {
 
 
 // get all bookings of a user
-bookingRoute.get("/all", async (req, res) => {
+bookingRoute.post("/all", async (req, res) => {
     const { userId } = req.body;
     try {
         const bookings = await bookingModel.find({ userId: userId });
