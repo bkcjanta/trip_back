@@ -59,10 +59,10 @@ bookingRoute.put("/update/:id", async (req, res) => {
 
 
 // get all bookings of a user
-bookingRoute.get("/user/:id", async (req, res) => {
-    const { id } = req.params;
+bookingRoute.get("/all", async (req, res) => {
+    const { userId } = req.body;
     try {
-        const bookings = await bookingModel.find({ userId: id });
+        const bookings = await bookingModel.find({ userId: userId });
         // map the bookings array to get flight details
         const bookingsWithFlightDetails = await Promise.all(bookings.map(async (booking) => {
             const flight = await flightModel.findById(booking.flightId);
