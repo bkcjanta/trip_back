@@ -27,12 +27,13 @@ bookingRoute.get("/details/:id", async (req, res) => {
     try {
         const booking = await bookingModel.findById(id);
         const flight = await flightModel.findById(booking.flightId);
-        flight.createdAt = undefined;
-        flight.updatedAt = undefined;
-        flight.__v = undefined;
-        flight._id = undefined;
-        flight.flightDays = undefined;
-        booking.flight_details = flight;
+
+        if (flight) {
+            booking.flight_details = flight;
+        } else {
+            booking.flight_details = {};
+        }
+
 
         res.status(200).send({ "msg": "booking details", data: booking });
     } catch (err) {
