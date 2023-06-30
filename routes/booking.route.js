@@ -67,15 +67,15 @@ bookingRoute.post("/all", async (req, res) => {
         // map the bookings array to get flight details
         const bookingsWithFlightDetails = await Promise.all(bookings.map(async (booking) => {
             const flight = await flightModel.findById(booking.flightId);
-            flight.createdAt = undefined;
-            flight.updatedAt = undefined;
-            flight.__v = undefined;
-            flight._id = undefined;
-            flight.flightDays = undefined;
-            booking.flight_details = flight;
-            booking.createdAt = undefined;
-            booking.updatedAt = undefined;
-            booking.__v = undefined;
+
+
+            if (flight) {
+                booking.flight_details = flight;
+            }
+            else {
+                booking.flight_details = {};
+            }
+
             return booking;
         }));
         res.status(200).send({ msg: "Bookings of a User", data: bookingsWithFlightDetails });
